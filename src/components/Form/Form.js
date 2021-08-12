@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import { v4 as uuidv4 } from "uuid";
 import style from "./Form.module.css";
+import { addContact } from "../../redux/contacts-actions.js"
+import { connect } from 'react-redux'
 
 
 const Form = ({ contacts, addContactItem }) => {
@@ -20,11 +22,6 @@ const Form = ({ contacts, addContactItem }) => {
 
   const onSubmit = (ev) => {
     ev.preventDefault();
-    // console.log(contacts.some(
-    //   ({ name }) => name.toLowerCase() === ev.currentTarget.name.value.toLowerCase() 
-        
-         
-    //   ))
     if (
       contacts.find(
         ({ name }) => {
@@ -41,7 +38,7 @@ const Form = ({ contacts, addContactItem }) => {
       number: ev.currentTarget.number.value,
       id: uuidv4(),
     };
-    addContactItem(contact);
+   addContactItem(contact)
     reset()
   };
 
@@ -87,5 +84,12 @@ const Form = ({ contacts, addContactItem }) => {
     </div>
   );
 };
+const mapDispatchToProps = dispatch => ({
+  addContactItem: data => dispatch(addContact(data))
+})
 
-export default Form;
+const mapStateToProps = (state) => ({
+  contacts: state.contacts.items,
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(Form) ;
