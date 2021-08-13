@@ -4,7 +4,7 @@ import Form from "./components/Form/Form";
 import ContactList from "./components/ContactLIst/ContactList";
 import Filter from "./components/Filter/Filter";
 const App = () => {
-  
+
   // useEffect(() => {
   //   if (localStorage.getItem("contacts")) {
   //     setContacts(JSON.parse(localStorage.getItem("contacts")));
@@ -20,9 +20,9 @@ const App = () => {
   // }, [contacts]);
   return (
     <>
-      <Form/>
-      <Filter/>{/* value={filter} onChange={changeFilter}  */}
-      <ContactList/>{/*itemsRender={visibleItems()}*/}
+      <Form />
+      <Filter />
+      <ContactList />
     </>
   );
 };
